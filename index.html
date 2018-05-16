@@ -37,6 +37,7 @@
                     <div id="nyt-articles">
                         <h2>Top Stories</h2>
                     <!--Holds Top 10 News Articles-->
+                    <div id="stories"></div>
                     </div>
                 </div>
             </div>
@@ -49,4 +50,38 @@
     </body>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src=“https://www.gstatic.com/firebasejs/5.0.2/firebase.js“></script>
+    <script>
+        
+function buildStories(){
+    var url = "https://api.nytimes.com/svc/topstories/v2/home.json";
+    
+    url += '?' + $.param({
+        'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
+    });
+    $.ajax({
+      url: url,
+      method: 'GET',
+    }).then(function(response){
+        var results = response.results
+        console.log(results);
+        var s = '';
+          for(r of results) {
+              console.log(r.title)
+              s = s+`${r.section}<br>
+              ${r.title}<br> 
+              ${r.abstract}<br>
+              ${r.byline}<br>
+              <a href='${r.short_url}'>Link</a><p>`
+          }
+          $("#stories").html(s)
+    }
+    
+    
+    
+    
+    );
+    };
+    
+    buildStories();
+        </script>
 </html>
