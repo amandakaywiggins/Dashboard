@@ -1,50 +1,12 @@
-.container {
-    width: 100%;
-}
-
-body {
-    background-color: #415370;
-}
-
-#header {
-    background-color: #dae0ea;
-    color: #191a1c;
-    padding: 10px;
+h1 {
     text-align: center;
 }
 
-.navbar {
-    background-color: #191a1c;
-    color: #dae0ea;
-}
-
-button {
-    color: #dae0ea;
-    background-color: #415370;
-    border-radius: 3px;
-}
-
-button:hover {
-    background-color: #191a1c;
-}
- 
 h2 {
     text-align: center;
 }
 
-#nyt-articles {
-    background-color: #dae0ea;
-    color: #191a1c;
-    border: solid;
-    border-width: 3px;
-    border-color: #415370;
-    border-radius: 5px;
-    padding: 20px;
-    margin-top: 20px;
-}
-
 #footer {
-    color: #dae0ea;
     text-align: center;
-    margin-top: 10px;
+    margin-bottom: 5px;
 }
