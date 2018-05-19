@@ -4,6 +4,7 @@
         <title>Dashboard Confessional</title>
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata|Raleway" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
     <body>
@@ -23,16 +24,17 @@
                     <form>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="name" class="form-control" id="name" placeholder="Sebastian">
+                            <input type="name" class="form-control" id="name-input" placeholder="Sebastian">
                         </div>
                         <div class="form-group">
                           <label for="zipcode">Zipcode</label>
-                          <input type="zipcode" class="form-control" id="zipcode" placeholder="Enter Zipcode">
+                          <input type="zipcode" class="form-control" id="zipcode-input" placeholder="Enter Zipcode">
                         </div>
                         <div class="form-group">
                             <label for="birthday">Birthday</label>
-                            <input type="birthday" class="form-control" id="birthday" placeholder="MM/DD/YYYY">
+                            <input type="birthday" class="form-control" id="birthday-input" placeholder="MM/DD/YYYY">
                         </div>
+                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                     </form>
                 </div>
                 <div class="col-md-3">
@@ -41,11 +43,13 @@
             </div>
             <div class="row">
                 <div class="col-md-12" id="footer">
-                    Created and Maintained by LH, AC, AW, & JG
+                    Created and Maintained by LH, AC, AW
                 </div>
             </div>
         </div>
     </body>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src=“https://www.gstatic.com/firebasejs/5.0.2/firebase.js“></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzsLtdMsWDfXc12nOJVonrCsDUUpXMVoU&callback=initMap"></script>
+    <script type="text/javascript" src="assets/javascript/javascript.js"></script>
     <script>

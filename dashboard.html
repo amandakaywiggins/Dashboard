@@ -4,13 +4,14 @@
         <title>Dashboard Confessional</title>
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata|Raleway" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Welcome to Our Dashboard</h1>
+                    <h1>Welcome to Your Dashboard</h1>
                 </div>
             </div>
             <div class ="row">
@@ -18,9 +19,26 @@
                     <!--Filler col-->
                 </div>
                 <div class="col-md-8">
-                    <h2>All the APIS go HERE (but pretty)</h2>
                     <div id="apis">
                         <!--All the APIS-->
+                        <div class="nyt-api">
+                            <h2>Top Articles at the New York Times</h2>
+                            <div id="nyt-articles">
+                                <!--articles append here-->
+                            </div>
+                        </div>
+                        <div class="map-api">
+                            <h2>Your Location</h2>
+                            <div id="map-display" style="height:400px">
+                                <!--map appends here-->
+                            </div>
+                        </div>
+                        <div class="weather-api">
+                            <h2>Weather</h2>
+                            <div id="weather-display">
+                                <!--weather appens here-->
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -29,12 +47,13 @@
             </div>
             <div class="row">
                 <div class="col-md-12" id="footer">
-                    Created and Maintained by LH, AC, AW, & JG
+                    Created and Maintained by LH, AC, AW
                 </div>
             </div>
         </div>
     </body>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzsLtdMsWDfXc12nOJVonrCsDUUpXMVoU&callback=initMap"></script>
     <script type="text/javascript" src="assets/javascript/javascript.js"></script>
-    <!--<script src=“https://www.gstatic.com/firebasejs/5.0.2/firebase.js“></script>-->
 </html>
