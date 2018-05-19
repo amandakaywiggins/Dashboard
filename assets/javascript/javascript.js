@@ -105,9 +105,40 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 };
 
-function weatherBackground() {
-    if (weather.id === 200 || 230 || 231 || 300 || 301 || 310 || 313 || 321 || 500 || 520) {
-        $("#weather-api").attr("src", "../images/weather/thunderstorm_with_light_rain.jpg");
+//weatherAPI
+var APIKey = "0cdaef666666e73cec0a1f220c106a82";
+var zipcode;
+var queryURL;
 
-    }
-};
+var ref = database.ref("/");
+
+database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
+    zipcode = snapshot.val().userZip;
+    console.log(zipcode);
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipcode + "&appid=" + APIKey;
+    console.log(queryURL);
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+  
+      console.log(response);
+  
+      // Transfer content to HTML
+      var wind = response.wind.speed;
+      var humidity = response.main.humidity;
+      var temp = response.main.temp;
+  
+      var weatherDisplay = $("<div>");
+      weatherDisplay.append($("<div>Wind Speed: " + wind + "</div><div> Humidity: " + humidity + "</div><div>Temperature: " + temp + "</div>"));
+      $("#weather-display").append(weatherDisplay);
+  
+      // Log the data in the console as well
+      console.log("Wind Speed: " + response.wind.speed);
+      console.log("Humidity: " + response.main.humidity);
+      console.log("Temperature (F): " + response.main.temp);
+      console.log("Rain" +  response.list.rain);
+  });
+});
+
+
