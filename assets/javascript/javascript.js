@@ -140,5 +140,3 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
       console.log("Rain" +  response.list.rain);
   });
 });
-
-
