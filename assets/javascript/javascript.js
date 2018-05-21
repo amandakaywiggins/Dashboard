@@ -106,8 +106,20 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 };
 
 //weatherAPI
-var APIKey = "0cdaef666666e73cec0a1f220c106a82";
-var zipcode;
+
+if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        var point = new google.maps.LatLng(lat, long);
+        new google.maps.Geocoder().geocode(
+            {'latLng': point},
+            function (res, status) {
+                var zip = res[1].address_components[7].long_name;
+                console.log(zip);
+
+                var APIKey = "0cdaef666666e73cec0a1f220c106a82";
+// var zipcode;
 var queryURL;
 
 var ref = database.ref("/");
@@ -115,7 +127,7 @@ var ref = database.ref("/");
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
     zipcode = snapshot.val().userZip;
     console.log(zipcode);
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipcode + "&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zip + "&appid=" + APIKey;
     console.log(queryURL);
     $.ajax({
     url: queryURL,
@@ -141,4 +153,18 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   });
 });
 
+           
+              
+
+                // zipcode = res[1];
+                // console.log(zipcode);  
+                // zc = res.address.components[0].long_name;
+                // console.log(zc);
+
+
+                
+            }
+        );
+    });
+}
 
