@@ -40,6 +40,11 @@ a {
     font-size: 0.7em;
 }
 
+#weather-api {
+    width: 400px;
+    height: 400px;
+}
+
 #footer {
     text-align: center;
     margin-bottom: 5px;
