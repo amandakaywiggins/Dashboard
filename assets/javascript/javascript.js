@@ -55,8 +55,9 @@ function buildStories() {
         results.length = 5;
             for(r of results) {
                 console.log(r.title)
+                //TODO section div should not encompass everything
                 //creates a string with the elements pulled from the api, turns it into readable html/text
-                s = s+`<div class="nyt-section">${r.section}
+                s = s +`<div class="nyt-section">${r.section}
                 <div class="nyt-title">${r.title}</div> 
                 <div class="nyt-abstract">${r.abstract}</div>
                 <div class="nyt-byline">${r.byline}</div>
@@ -69,13 +70,12 @@ function buildStories() {
 buildStories();
 
 var map, infoWindow;
-var pos;          
+var pos;  
 function initMap() {
     map = new google.maps.Map(document.getElementById("map-display"), {
         center: {lat: -34.397, lng: 150.644},
         zoom: 12
-    });
-        
+    });   
     infoWindow = new google.maps.InfoWindow;
     // Try HTML5 geolocation.
             
@@ -85,6 +85,32 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+            $.ajax({
+                url: "https://developers.zomato.com/api/v2.1/geocode?lat=" + pos.lat + "&lon=" + pos.lng,
+                method: 'GET',
+                headers: {
+                    "user-key": "2457ece772ffe351c5664115a2e148c7" 
+                }
+            }).then(function(response){
+                console.log(response)
+                var places = response.nearby_restaurants.slice(0,5);
+                console.log(places);
+                var placesHTML = '';
+                for (p of places){
+                    placesHTML = placesHTML + `<p>${p.restaurant.name}
+                    <br>
+                    ${p.restaurant.location.address}
+                    <br>
+                    <a href="${p.restaurant.menu_url}">Menu</a></p>`
+                }
+                $("#food").html(placesHTML)
+                console.log(p.restaurant.menu_url)
+
+
+
+                
+            })
+
             declarePOS(pos);
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
@@ -98,6 +124,8 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     };
 };
+
+console.log(pos)
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -147,6 +175,7 @@ if(navigator.geolocation) {
         }
     );
 };
+
 function declarePOS(expectedPOS) {
     console.log(expectedPOS)
 }
