@@ -30,6 +30,13 @@ $("#submit").on("click", function(event){
     window.location.href ="dashboard.html";
 });
 
+
+//TODO FIX
+function zomato(){
+    var url = "https://developers.zomato.com/api/v2.1/geocode?lat=" + pos.lat + "&lon=" + pos.lng
+    console.log(url)
+}
+
 function buildStories() {
     var url = "https://api.nytimes.com/svc/topstories/v2/home.json";
     
@@ -60,14 +67,9 @@ function buildStories() {
 };
     
 buildStories();
-    
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
 
 var map, infoWindow;
-          
+var pos;          
 function initMap() {
     map = new google.maps.Map(document.getElementById("map-display"), {
         center: {lat: -34.397, lng: 150.644},
@@ -79,11 +81,11 @@ function initMap() {
             
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+            pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-    
+            declarePOS(pos);
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             infoWindow.open(map);
@@ -96,7 +98,7 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     };
 };
-    
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -114,17 +116,19 @@ if(navigator.geolocation) {
         var point = new google.maps.LatLng(lat, long);
         new google.maps.Geocoder().geocode(
             {'latLng': point},
+
             function (res, status) {
-                var zip = res[1].address_components[7].long_name;
-                console.log(zip);
+
                 var APIKey = "0cdaef666666e73cec0a1f220c106a82";
                 var queryURL;
-                var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zip + "&appid=" + APIKey;
+                var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + APIKey;
+                
                 console.log(queryURL);
                 $.ajax({
                     url: queryURL,
                     method: "GET"
                 }).then(function(response) {
+
                     console.log(response);
                     // Transfer content to HTML
                     var wind = response.wind.speed;
@@ -143,4 +147,6 @@ if(navigator.geolocation) {
         }
     );
 };
-
+function declarePOS(expectedPOS) {
+    console.log(expectedPOS)
+}
