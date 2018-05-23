@@ -128,7 +128,7 @@ if(navigator.geolocation) {
                     var wind = response.wind.speed;
                     var humidity = response.main.humidity;
                     var temp = response.main.temp;
-                    var weatherDisplay = $("<div>");
+                    var weatherDisplay = $("<div id='weather-info'>");
                     weatherDisplay.append($("<div>Wind Speed: " + wind + "</div><div> Humidity: " + humidity + "</div><div>Temperature: " + temp + "</div>"));
                     $("#weather-display").append(weatherDisplay);
                     // Log the data in the console as well
@@ -137,85 +137,45 @@ if(navigator.geolocation) {
                     console.log("Temperature (F): " + response.main.temp);
                     var weatherCode = response.weather[0].id
                     console.log(weatherCode);
-                    //console.log("Rain" +  response.list.rain);
                         if (weatherCode === 200 || 230 || 231 || 300 || 301 || 310 || 313 || 321 || 500 || 520) {
-                            console.log(`weather code is ${weatherCode} so it should be raining`);
-                            var lightRainImage = $("<img>")
-                            lightRainImage.attr("src" , "assets/images/weather/light_rain.jpg");
-                            $("#weather-api").append(lightRainImage);
+                            console.log(weatherCode);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/light_rain.jpg)"); 
                         } else if (weatherCode === 210 || 302 || 311 || 501 || 522 || 531) {
-                            var rainImage = $("<img>")
-                            rainImage.attr("src", "assets/images/weather/rain.jpg");
-                            $("#weather-api").append(rainImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/rain.jpg)");                             
                         } else if (weatherCode === 312 || 313 || 314 || 503 || 502) {
-                            var heavyRainImage = $("<img>");
-                            heavyRainImage.attr("src", "assets/images/weather/heavy_rain.jpg");
-                            $("#weather-api").append(heavyRainImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/heavy_rain.jpg)");                             
                         } else if (weatherCode === 202 || 211 || 212 || 221 || 232 || 711) {
-                            var thunderstormImage = $("<img>");
-                            thunderstormImage.attr("src", "assets/images/weather/thunderstorm.jpg");
-                            $("#weather-api").append(thunderstormImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/thunderstorm.jpg)"); 
                         } else if (weatherCode === 504) {
-                            var extremeRainImage = $("<ing>");
-                            extremeRainImage.attr("src", "assets/images/weather/extreme_rain.jpg");
-                            $("#weather-api").append(extremeRainImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/extreme_rain.jpg)");                             
                         } else if (weatherCode === 600 || 615) {
-                            var lightSnowImage = $("<img>");
-                            lightSnowImage.attr("src", "assets/images/weather/light_snow.jpg");
-                            $("#weather-api").append(lightSnowImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/light_snow.jpg)");                             
                         } else if (weatherCode === 601 || 616 || 621) {
-                            var snowImage = $("<img>");
-                            snowImage.attr("src", "assets/images/weather/snow.jpg");
-                            $("#weather-api").append(snowImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/snow.jpg)");                             
                         } else if (weatherCode === 602, 622) {
-                            var heavySnowImage = $("<ing>");
-                            heavySnowImage.attr("src", "assets/images/weather/heavy_snow.jpg");
-                            $("#weather-api").append(heavySnowImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/heavy_snow.jpg)");                             
                         } else if (weatherCode === 611 || 612 || 511) {
-                            var sleetImage = $("<img>");
-                            sleetImage.attr("src", "assets/images/weather/sleet.jpg");
-                            $("#weather-api").append(sleetImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/sleet.jpg)");                             
                         } else if (weatherCode === 701 || 741) {
-                            var fogImage = $("<img>");
-                            fogImage.attr("src", "assets/images/weather/fog.jpg");
-                            $("#weather-api").append(fogImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/fog.jpg)");                             
                         } else if (weatherCode === 711) {
-                            var smokeImage = $("<img>");
-                            smokeImage.attr("src", "assets/images/weather/smoke.jpg");
-                            $("#weather-api").append(smokeImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/smoke.jpg)");                             
                         } else if (weatherCode === 721) {
-                            var hazeImage = $("<img>");
-                            hazeImage.attr("src", "assets/images/weather/haze.jpg");
-                            $("#weather-api").append(hazeImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/haze.jpg)");                             
                         } else if (weatherCode === 731 || 751 || 761) {
-                            var duststormImage = $("<img>");
-                            duststormImage.attr("src", "assets/images/weather/dust.jpg");
-                            $("#weather-api").append(duststormImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/dust.jpg)");                             
                         } else if (weatherCode === 762) {
-                            var volcanicAshImage = $("<img>");
-                            volcanicAshImage.attr("src", "assets/images/weather/volcanic_ash.jpg");
-                            $("#weather-api").append(volcanicAshImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/volcanic_ash.jpg)");                             
                         } else if (weatherCode === 781) {
-                            var tornadoImage = $("<img>");
-                            tornadoImage.attr("src", "assets/images/weather/tornado.jpg");
-                            $("#weather-api").append(tornadoImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/tornado.jpg)");                             
                         } else if (weatherCode === 800) {
-                            console.log("Hi!");
-                            var clearImage = $("<img>");
-                            clearImage.attr("src", "assets/images/weather/clear.jpg");
-                            $("#weather-api").append(clearImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/clear.jpg)");  
                         } else if (weatherCode === 801, 802) {
-                            var scatteredCloudsImage = $("<img>");
-                            scatteredCloudsImage.attr("src", "assets/images/weather/scattered_clouds.jpg");
-                            $("#weather-api").append(scatteredCloudsImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/scattered_clouds.jpg)");                             
                         } else if (weatherCode === 803 || 804) {
-                            var overcastImage = $("<img>");
-                            overcastImage.attr("src", "assets/images/weather/overcast.jpg");
-                            $("#weather-api").append(overcastImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/overcast.jpg)");                             
                         } else {
-                            var earthImage = $("<img>");
-                            earthImage.attr("src", "assets/images/weather/earth.jpg");
-                            $("#weather-api").append(earthImage);
+                            $("#weather-api").css("background-image", "url(assets/images/weather/earth.jpg)");                             
                         };
                 });    
             });
