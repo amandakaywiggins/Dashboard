@@ -48,8 +48,9 @@ function buildStories() {
         results.length = 5;
             for(r of results) {
                 console.log(r.title)
+                //TODO section div should not encompass everything
                 //creates a string with the elements pulled from the api, turns it into readable html/text
-                s = s+`<div class="nyt-section">${r.section}
+                s = s +`<div class="nyt-section">${r.section}
                 <div class="nyt-title">${r.title}</div> 
                 <div class="nyt-abstract">${r.abstract}</div>
                 <div class="nyt-byline">${r.byline}</div>
@@ -60,30 +61,50 @@ function buildStories() {
 };
     
 buildStories();
-    
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
 
 var map, infoWindow;
-          
+var pos;  
 function initMap() {
     map = new google.maps.Map(document.getElementById("map-display"), {
         center: {lat: -34.397, lng: 150.644},
         zoom: 12
-    });
-        
+    });   
     infoWindow = new google.maps.InfoWindow;
     // Try HTML5 geolocation.
             
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+            pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-    
+            $.ajax({
+                url: "https://developers.zomato.com/api/v2.1/geocode?lat=" + pos.lat + "&lon=" + pos.lng,
+                method: 'GET',
+                headers: {
+                    "user-key": "2457ece772ffe351c5664115a2e148c7" 
+                }
+            }).then(function(response){
+                console.log(response)
+                var places = response.nearby_restaurants.slice(0,5);
+                console.log(places);
+                var placesHTML = '';
+                for (p of places){
+                    placesHTML = placesHTML + `<p>${p.restaurant.name}
+                    <br>
+                    ${p.restaurant.location.address}
+                    <br>
+                    <a href="${p.restaurant.menu_url}">Menu</a></p>`
+                }
+                $("#food").html(placesHTML)
+                console.log(p.restaurant.menu_url)
+
+
+
+                
+            })
+
+            declarePOS(pos);
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             infoWindow.open(map);
@@ -96,7 +117,9 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     };
 };
-    
+
+console.log(pos)
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -114,17 +137,19 @@ if(navigator.geolocation) {
         var point = new google.maps.LatLng(lat, long);
         new google.maps.Geocoder().geocode(
             {'latLng': point},
+
             function (res, status) {
-                var zip = res[1].address_components[7].long_name;
-                console.log(zip);
+
                 var APIKey = "0cdaef666666e73cec0a1f220c106a82";
                 var queryURL;
-                var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zip + "&appid=" + APIKey;
+                var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + APIKey;
+                
                 console.log(queryURL);
                 $.ajax({
                     url: queryURL,
                     method: "GET"
                 }).then(function(response) {
+
                     console.log(response);
                     // Transfer content to HTML
                     var wind = response.wind.speed;
@@ -144,3 +169,6 @@ if(navigator.geolocation) {
     );
 };
 
+function declarePOS(expectedPOS) {
+    console.log(expectedPOS)
+}
