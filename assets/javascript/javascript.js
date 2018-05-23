@@ -30,13 +30,6 @@ $("#submit").on("click", function(event){
     window.location.href ="dashboard.html";
 });
 
-
-//TODO FIX
-function zomato(){
-    var url = "https://developers.zomato.com/api/v2.1/geocode?lat=" + pos.lat + "&lon=" + pos.lng
-    console.log(url)
-}
-
 function buildStories() {
     var url = "https://api.nytimes.com/svc/topstories/v2/home.json";
     
