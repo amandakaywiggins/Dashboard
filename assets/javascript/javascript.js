@@ -99,7 +99,7 @@ function initMap() {
                     <a href="${p.restaurant.menu_url}">Menu</a></p>`
                 }
                 
-                $("#food").html(placesHTML)
+                $("#restaurants").html(placesHTML)
                 console.log(p.restaurant.menu_url)
             })
 

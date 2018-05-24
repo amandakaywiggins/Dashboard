@@ -21,18 +21,6 @@
                 <div class="col-md-8">
                     <div id="apis">
                         <!--All the APIS-->
-                        <div class="nyt-api">
-                            <h2>Top Articles at the New York Times</h2>
-                            <div id="nyt-articles">
-                                <!--articles append here-->
-                            </div>
-                        </div>
-                        <div class="map-api">
-                            <h2>Your Location</h2>
-                            <div id="map-display" style="height:400px">
-                                <!--map appends here-->
-                            </div>
-                        </div>
                         <div id="weather-api">
                             <h2>Weather</h2>
                             <div id="weather-display">
@@ -45,14 +33,29 @@
                             <!--giphy appens here-->
                             </div>
                         </div>
+                        <div class="nyt-api">
+                            <h2>Top Articles at the New York Times</h2>
+                            <div id="nyt-articles">
+                                <!--articles append here-->
+                            </div>
+                        </div>
+                        <div class="map-api">
+                            <h2>Your Location</h2>
+                            <div id="map-display" style="height:400px">
+                                <!--map appends here-->
+                            </div>
+                        </div>
+                        <div class="food-api">
+                            <h2>Local Eats</h2>
+                            <div id="restaurants">
+                                <!--restaurants appends here-->
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <!--Filler col-->
                 </div>
-            </div>
-            <div id="food">
-                
             </div>
             <div class="row">
                 <div class="col-md-12" id="footer">
@@ -60,22 +63,10 @@
                 </div>
             </div>
         </div>
-        <div id="animal-buttons">
-
-        </div>
-      
-        <form id="animal-form">
-          <label for="animal-input">Add an animal</label>
-          <input type="text" id="animal-input"><br>
-          <input id="add-animal" type="submit" value="Submit">
-        </form>
-      
-        <div id="animals">
-      
-        </div>
     </body>
+    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzsLtdMsWDfXc12nOJVonrCsDUUpXMVoU&callback=initMap"></script>
     <script type="text/javascript" src="assets/javascript/javascript.js"></script>
-    </html>
+</html>
