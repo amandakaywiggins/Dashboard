@@ -103,20 +103,19 @@ function initMap() {
                 console.log(p.restaurant.menu_url)
             })
 
-            declarePOS(pos);
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             infoWindow.open(map);
             map.setCenter(pos);
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
-        });} else {
+        });
+    } else {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     };
 };
 
-console.log(pos)
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -160,32 +159,36 @@ if(navigator.geolocation) {
                     console.log("Temperature (F): " + response.main.temp);
                     var weatherCode = response.weather[0].id
                     console.log(weatherCode);
-                        if (weatherCode === 200 || 230 || 231 || 300 || 301 || 310 || 313 || 321 || 500 || 520) {
-                            console.log(weatherCode);
+                        if (weatherCode === 200 || weatherCode === 230 || weatherCode === 231 || weatherCode === 300 || weatherCode === 301
+                             || weatherCode === 310 || weatherCode === 313 || weatherCode === 321 || weatherCode === 500 
+                             || weatherCode === 520) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/light_rain.jpg)"); 
-                        } else if (weatherCode === 210 || 302 || 311 || 501 || 522 || 531) {
+                        } else if (weatherCode === 210 || weatherCode === 302 || weatherCode === 311 || weatherCode === 501 
+                            || weatherCode === 522 || weatherCode === 531) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/rain.jpg)");                             
-                        } else if (weatherCode === 312 || 313 || 314 || 503 || 502) {
+                        } else if (weatherCode === 312 || weatherCode === 313 || weatherCode === 314 || weatherCode === 503 
+                            || weatherCode === 502) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/heavy_rain.jpg)");                             
-                        } else if (weatherCode === 202 || 211 || 212 || 221 || 232 || 711) {
+                        } else if (weatherCode === 202 || weatherCode === 211 || weatherCode === 212 || weatherCode === 221 
+                            || weatherCode === 232 || weatherCode === 711) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/thunderstorm.jpg)"); 
                         } else if (weatherCode === 504) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/extreme_rain.jpg)");                             
-                        } else if (weatherCode === 600 || 615) {
+                        } else if (weatherCode === 600 || weatherCode === 615) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/light_snow.jpg)");                             
-                        } else if (weatherCode === 601 || 616 || 621) {
+                        } else if (weatherCode === 601 || weatherCode === 616 || weatherCode === 621) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/snow.jpg)");                             
-                        } else if (weatherCode === 602, 622) {
+                        } else if (weatherCode === 602 || weatherCode === 622) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/heavy_snow.jpg)");                             
-                        } else if (weatherCode === 611 || 612 || 511) {
+                        } else if (weatherCode === 611 || weatherCode === 612 || weatherCode === 511) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/sleet.jpg)");                             
-                        } else if (weatherCode === 701 || 741) {
+                        } else if (weatherCode === 701 || weatherCode === 741) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/fog.jpg)");                             
                         } else if (weatherCode === 711) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/smoke.jpg)");                             
                         } else if (weatherCode === 721) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/haze.jpg)");                             
-                        } else if (weatherCode === 731 || 751 || 761) {
+                        } else if (weatherCode === 731 || weatherCode === 751 || weatherCode === 761) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/dust.jpg)");                             
                         } else if (weatherCode === 762) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/volcanic_ash.jpg)");                             
@@ -193,9 +196,9 @@ if(navigator.geolocation) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/tornado.jpg)");                             
                         } else if (weatherCode === 800) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/clear.jpg)");  
-                        } else if (weatherCode === 801, 802) {
+                        } else if (weatherCode === 801 || weatherCode === 802) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/scattered_clouds.jpg)");                             
-                        } else if (weatherCode === 803 || 804) {
+                        } else if (weatherCode === 803 || weatherCode === 804) {
                             $("#weather-api").css("background-image", "url(assets/images/weather/overcast.jpg)");                             
                         } else {
                             $("#weather-api").css("background-image", "url(assets/images/weather/earth.jpg)");                             
@@ -209,9 +212,10 @@ if(navigator.geolocation) {
 
 //GIPHY API
 function displayCuteAnimals() {
-    database.ref().on("value", function(snapshot) {
-        console.log(snapshot.val());
-        animal = snapshot.val().userFavAnimal;
+    database.ref().on("child_added", function(childSnapshot) {
+        console.log(childSnapshot.val());
+        animal = childSnapshot.val().userFavAnimal;
+        console.log(animal);
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=1";
         console.log(queryURL);
         $.ajax({
