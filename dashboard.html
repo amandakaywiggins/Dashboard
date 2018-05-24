@@ -11,50 +11,67 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Welcome to Your Dashboard</h1>
+                    <nav class="navbar fixed-top navbar-light bg-light">
+                        <h1>Welcome to Your Dashboard</h1>
+                    </nav>
                 </div>
             </div>
+        </div>
+        <div class="container">
             <div class ="row">
-                <div class="col-md-1">
-                    <!--Filler col-->
-                </div>
                 <div class="col-md-8">
-                    <div id="apis">
-                        <!--All the APIS-->
-                        <div id="weather-api">
-                            <h2>Weather</h2>
-                            <div id="weather-display">
-                                <!--weather appens here-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="nyt-api">
+                                <h2>Top Articles at the New York Times</h2>
+                                <div id="nyt-articles">
+                                    <!--articles append here-->
+                                </div>
                             </div>
                         </div>
-                        <div class="giphy-api">
-                            <h2>It's a cute...</h2>
-                            <div id="cute-animals">
-                            <!--giphy appens here-->
-                            </div>
-                        </div>
-                        <div class="nyt-api">
-                            <h2>Top Articles at the New York Times</h2>
-                            <div id="nyt-articles">
-                                <!--articles append here-->
-                            </div>
-                        </div>
-                        <div class="map-api">
-                            <h2>Your Location</h2>
-                            <div id="map-display" style="height:400px">
-                                <!--map appends here-->
-                            </div>
-                        </div>
-                        <div class="food-api">
-                            <h2>Local Eats</h2>
-                            <div id="restaurants">
-                                <!--restaurants appends here-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="giphy-api">
+                                <h2>It's a cute...</h2>
+                                <div id="cute-animals">
+                                    <!--giphy appens here-->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <!--Filler col-->
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="weather-api">
+                                <h2>Weather</h2>
+                                <div id="weather-display">
+                                    <!--weather appens here-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="map-api">
+                                <h2>Your Location</h2>
+                                <div id="map-display" style="height:400px">
+                                    <!--map appends here-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="food-api">
+                                <h2>Local Eats</h2>
+                                <div id="restaurants">
+                                    <!--restaurants appends here-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -64,7 +81,7 @@
             </div>
         </div>
     </body>
-    
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzsLtdMsWDfXc12nOJVonrCsDUUpXMVoU&callback=initMap"></script>

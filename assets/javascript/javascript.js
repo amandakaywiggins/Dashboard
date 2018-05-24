@@ -30,6 +30,8 @@ $("#submit").on("click", function(event){
     window.location.href ="dashboard.html";
 });
 
+console.log(userName);
+
 function buildStories() {
     var url = "https://api.nytimes.com/svc/topstories/v2/home.json";
     
@@ -212,7 +214,7 @@ if (navigator.geolocation) {
 
 //GIPHY API
 function displayCuteAnimals() {
-    database.ref().on("child_added", function(childSnapshot) {
+    database.ref().orderByChild("userName").equalTo("").on("child_added", function(childSnapshot) {
         console.log(childSnapshot.val());
         animal = childSnapshot.val().userFavAnimal;
         console.log(animal);
