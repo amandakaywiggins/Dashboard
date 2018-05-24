@@ -186,9 +186,9 @@ if(navigator.geolocation) {
 
 //GIPHY API
 function displayCuteAnimals() {
-    database.ref().on("child_added" , function(childSnapshot) {
-        console.log(childSnapshot.val());
-        animal = childSnapshot.val().userFavAnimal;
+    database.ref().on("value", function(snapshot) {
+        console.log(snapshot.val());
+        animal = snapshot.val().userFavAnimal;
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=1";
         console.log(queryURL);
         $.ajax({
@@ -212,8 +212,8 @@ function displayCuteAnimals() {
                     $("#cute-animals").append(animalDiv);
                 }
         });
-    });
-};
+});
+
 
 displayCuteAnimals();
 
