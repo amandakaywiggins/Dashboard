@@ -127,7 +127,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 //weatherAPI
 
-if(navigator.geolocation) {
+if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
