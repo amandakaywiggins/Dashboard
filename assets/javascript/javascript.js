@@ -62,8 +62,13 @@ function buildStories() {
     
 buildStories();
 
+
 var map, infoWindow;
+<<<<<<< HEAD
 var pos;  
+=======
+var pos;     
+>>>>>>> lea
 function initMap() {
     map = new google.maps.Map(document.getElementById("map-display"), {
         center: {lat: -34.397, lng: 150.644},
@@ -71,10 +76,14 @@ function initMap() {
     });   
     infoWindow = new google.maps.InfoWindow;
     // Try HTML5 geolocation.
-            
+      
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
+<<<<<<< HEAD
             pos = {
+=======
+                pos = {
+>>>>>>> lea
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
@@ -128,6 +137,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 };
 
+// console.log(pos.lat);
+// console.log(pos.lng);
+
+
 //weatherAPI
 
 if(navigator.geolocation) {
@@ -140,6 +153,7 @@ if(navigator.geolocation) {
 
             function (res, status) {
 
+<<<<<<< HEAD
                 var APIKey = "0cdaef666666e73cec0a1f220c106a82";
                 var queryURL;
                 var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + APIKey;
@@ -168,6 +182,161 @@ if(navigator.geolocation) {
         }
     );
 };
+=======
+        var APIKey = "0cdaef666666e73cec0a1f220c106a82";
+// var zipcode;
+        var queryURL;
+
+        var ref = database.ref("/");
+
+    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
+    zipcode = snapshot.val().userZip;
+    console.log(zipcode);
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?&lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + APIKey;
+    console.log(queryURL);
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    }).then(function(response) {
+  
+      console.log(response);
+  
+      // Transfer content to HTML
+      var wind = response.wind.speed;
+      var humidity = response.main.humidity;
+      var temp = response.main.temp;
+  
+      var weatherDisplay = $("<div>");
+      weatherDisplay.append($("<div>Wind Speed: " + wind + "</div><div> Humidity: " + humidity + "</div><div>Temperature: " + temp + "</div>"));
+      $("#weather-display").append(weatherDisplay);
+  
+      // Log the data in the console as well
+      console.log("Wind Speed: " + response.wind.speed);
+      console.log("Humidity: " + response.main.humidity);
+      console.log("Temperature (F): " + response.main.temp);
+      console.log("Rain" +  response.list.rain);
+            });
+        });
+    });
+});
+}
+
+
+        
+
+// if(navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//         var lat = position.coords.latitude;
+//         var long = position.coords.longitude;
+//         // console.log(lat);
+//         // console.log(long);
+//         var point = new google.maps.LatLng(lat, long);
+//         new google.maps.Geocoder().geocode(
+//             {'latLng': point},
+//             function (res, status) {
+//                 var zip = res[1].address_components[7].long_name;
+//                 console.log(zip);
+
+    // function zomato(){
+    //     var zomatoAPIKey = 'MjCaw_obNyTOzhBmIQIJfk8_C1IDIetVbdJ2HdOxq4gc8U06SY3JrGSbOwcYgshgpLH5hkmmuiQgADOy3XaIygZBX5PoE6cz8US194mZr9no2pcOoHUX5mda_U0AW3Yx'
+    //     var queryURL = 'https://developers.zomato.com/api/v2.1/search?lat=' + lat + "&lon=" + long + "?user-key=" + zomatoAPIKey;
+
+    //     $.ajax({
+    //      url: queryURL,
+    //      method: 'GET',
+    //     }).then(function(response){
+    //         var results = response.results;
+    //         console.log(results);
+
+
+    // var animals = [''];
+
+
+  
+    // function to make buttons and add to page
+    function populateButtons(arrayToUse, classToAdd, areaToAddTo) {
+      $(areaToAddTo).empty();
+  
+      for (var i = 0; i < arrayToUse.length; i++) {
+        var a = $("<button>");
+        a.addClass(classToAdd);
+        a.attr("data-type", arrayToUse[i]);
+        a.text(arrayToUse[i]);
+        $(areaToAddTo).append(a);
+      }
+  
+    }
+        // GIPHY
+    $(document).on("click", ".animal-button", function() {
+      $("#animals").empty();
+      $(".animal-button").removeClass("active");
+      $(this).addClass("active");
+  
+      var type = $(this).attr("data-type");
+      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=kK4jceB5idHjhlnJX1yqyZLP6uGvN1of&limit=10";
+  
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function(response) {
+          var results = response.data;
+  
+          for (var i = 0; i < results.length; i++) {
+            var animalDiv = $("<div class=\"animal-item\">");
+  
+            var rating = results[i].rating;
+  
+            var p = $("<p>").text("Rating: " + rating);
+  
+            var animated = results[i].images.fixed_height.url;
+            var still = results[i].images.fixed_height_still.url;
+  
+            var animalImage = $("<img>");
+            animalImage.attr("src", still);
+            animalImage.attr("data-still", still);
+            animalImage.attr("data-animate", animated);
+            animalImage.attr("data-state", "still");
+            animalImage.addClass("animal-image");
+  
+            animalDiv.append(p);
+            animalDiv.append(animalImage);
+  
+            $("#animals").append(animalDiv);
+          }
+        });
+    });
+  
+    $(document).on("click", ".animal-image", function() {
+  
+      var state = $(this).attr("data-state");
+  
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      }
+      else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+    });
+  
+    $("#add-animal").on("click", function(event) {
+      event.preventDefault();
+      var newAnimal = $("input").eq(0).val();
+  
+      if (newAnimal.length > 2) {
+        animals.push(newAnimal);
+      }
+  
+      populateButtons(animals, "animal-button", "#animal-buttons");
+  
+    });
+  
+    populateButtons(animals, "animal-button", "#animal-buttons");
+  
+
+>>>>>>> lea
 
 function declarePOS(expectedPOS) {
     console.log(expectedPOS)
