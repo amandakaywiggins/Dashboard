@@ -68,7 +68,7 @@ buildStories();
 
 
 var map, infoWindow;
-          
+var pos;     
 function initMap() {
     map = new google.maps.Map(document.getElementById("map-display"), {
         center: {lat: -34.397, lng: 150.644},
@@ -77,10 +77,10 @@ function initMap() {
         
     infoWindow = new google.maps.InfoWindow;
     // Try HTML5 geolocation.
-            
+      
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+                pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
@@ -106,6 +106,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 };
 
+// console.log(pos.lat);
+// console.log(pos.lng);
+
+
 //weatherAPI
 
 if(navigator.geolocation) {
@@ -116,10 +120,8 @@ if(navigator.geolocation) {
         new google.maps.Geocoder().geocode(
             {'latLng': point},
             function (res, status) {
-                var zip = res[1].address_components[7].long_name;
-                console.log(zip);
 
-                var APIKey = "0cdaef666666e73cec0a1f220c106a82";
+        var APIKey = "0cdaef666666e73cec0a1f220c106a82";
 // var zipcode;
         var queryURL;
 
@@ -128,7 +130,7 @@ if(navigator.geolocation) {
     database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
     zipcode = snapshot.val().userZip;
     console.log(zipcode);
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zip + "&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?&lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + APIKey;
     console.log(queryURL);
     $.ajax({
     url: queryURL,
@@ -151,64 +153,41 @@ if(navigator.geolocation) {
       console.log("Humidity: " + response.main.humidity);
       console.log("Temperature (F): " + response.main.temp);
       console.log("Rain" +  response.list.rain);
-  });
-});
-
-if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        // console.log(lat);
-        // console.log(long);
-        var point = new google.maps.LatLng(lat, long);
-        new google.maps.Geocoder().geocode(
-            {'latLng': point},
-            function (res, status) {
-                var zip = res[1].address_components[7].long_name;
-                console.log(zip);
-
-    function zomato(){
-        var zomatoAPIKey = 'MjCaw_obNyTOzhBmIQIJfk8_C1IDIetVbdJ2HdOxq4gc8U06SY3JrGSbOwcYgshgpLH5hkmmuiQgADOy3XaIygZBX5PoE6cz8US194mZr9no2pcOoHUX5mda_U0AW3Yx'
-        var queryURL = 'https://developers.zomato.com/api/v2.1/search?lat=' + lat + "&lon=" + long + "?user-key=" + zomatoAPIKey;
-
-        $.ajax({
-         url: queryURL,
-         method: 'GET',
-        }).then(function(response){
-            var results = response.results;
-            console.log(results);
-        
-    })
-}
-            })
-        })
-    }
-
-    yelp();
-    console.log(lat);
-    console.log(long);
-
-
-           
-              
-
-                // zipcode = res[1];
-                // console.log(zipcode);  
-                // zc = res.address.components[0].long_name;
-                // console.log(zc);
-
-
-                
-            }
-        );
+            });
+        });
     });
+});
 }
 
-yelpAPI = "MjCaw_obNyTOzhBmIQIJfk8_C1IDIetVbdJ2HdOxq4gc8U06SY3JrGSbOwcYgshgpLH5hkmmuiQgADOy3XaIygZBX5PoE6cz8US194mZr9no2pcOoHUX5mda_U0AW3Yx";
+
+        
+
+// if(navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//         var lat = position.coords.latitude;
+//         var long = position.coords.longitude;
+//         // console.log(lat);
+//         // console.log(long);
+//         var point = new google.maps.LatLng(lat, long);
+//         new google.maps.Geocoder().geocode(
+//             {'latLng': point},
+//             function (res, status) {
+//                 var zip = res[1].address_components[7].long_name;
+//                 console.log(zip);
+
+    // function zomato(){
+    //     var zomatoAPIKey = 'MjCaw_obNyTOzhBmIQIJfk8_C1IDIetVbdJ2HdOxq4gc8U06SY3JrGSbOwcYgshgpLH5hkmmuiQgADOy3XaIygZBX5PoE6cz8US194mZr9no2pcOoHUX5mda_U0AW3Yx'
+    //     var queryURL = 'https://developers.zomato.com/api/v2.1/search?lat=' + lat + "&lon=" + long + "?user-key=" + zomatoAPIKey;
+
+    //     $.ajax({
+    //      url: queryURL,
+    //      method: 'GET',
+    //     }).then(function(response){
+    //         var results = response.results;
+    //         console.log(results);
 
 
-
-    var animals = [''];
+    // var animals = [''];
 
 
   
