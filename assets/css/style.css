@@ -41,6 +41,7 @@ h1 {
 body {
     font-family: 'Raleway', sans-serif;
     font-size: 16px;
+    background-color: #ffffdb;
 }
 
 h2 {
@@ -48,15 +49,16 @@ h2 {
     font-size: 1.5em;
 }
 
-#giphy-div, #nyt-div, #weather-div, #map-div, #food-div {
+#giphy-div, #nyt-div, #weather-div, #map-div, #food-div, #social-div {
     margin: auto;
     margin-top: 30px;
     border-radius: 6px;
     padding: 10px;
+    background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#weather-div, #map-div, #food-div {
+#weather-div, #map-div, #food-div, #social-div {
     margin-left: 30px;
 }
 
@@ -86,6 +88,14 @@ a {
     font-size: 0.7em;
 }
 
+#social-media{
+    text-align: center;
+}
+
+i {
+    padding: 5px;
+}
+
 #weather-div {
     width: 350px;
     height: 200px;
@@ -95,7 +105,7 @@ a {
 #weather-api {
     color: white;
     padding: 15px;
-    background-color: rgb(0, 0, 0, 0.7);
+    background-color: rgb(0, 0, 0, 0.5);
     margin-top: 20px;
     padding: 10px 5px;
     align-content: center;
