@@ -65,7 +65,7 @@ function buildStories() {
                 <div class="nyt-title">${r.title}</div> 
                 <div class="nyt-abstract">${r.abstract}</div>
                 <div class="nyt-byline">${r.byline}</div>
-                <div class="nyt-link"><a href='${r.short_url}'>Go To Article</a><p></div></div>`
+                <div class="nyt-link"><a href='${r.short_url}' target='_blank'>Go To Article</a><p></div><hr></div>`
             };
         $("#nyt-articles").html(s);
     });
@@ -107,7 +107,7 @@ function initMap() {
                     <br>
                     ${p.restaurant.location.address}
                     <br>
-                    <a href="${p.restaurant.menu_url}">Menu</a></p>`
+                    <a href="${p.restaurant.menu_url}" target='_blank'>Menu</a></p>`
                 }
                 
                 $("#restaurants").html(placesHTML)
