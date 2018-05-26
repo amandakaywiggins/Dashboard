@@ -161,8 +161,9 @@ if (navigator.geolocation) {
                     var wind = response.wind.speed;
                     var humidity = response.main.humidity;
                     var temp = response.main.temp;
+                    var conditions = response.weather[0].description;
                     var weatherDisplay = $("<div id='weather-info'>");
-                    weatherDisplay.append($("<div>Wind Speed: " + wind + "</div><div> Humidity: " + humidity + "</div><div>Temperature: " + temp + "</div>"));
+                    weatherDisplay.append($("<div>Wind Speed: " + wind + "</div><div> Humidity: " + humidity + "</div><div>Temperature: " + temp + "</div><div>Conditions: " + conditions + "</div>"));
                     $("#weather-display").append(weatherDisplay);
                     // Log the data in the console as well
                     console.log("Wind Speed: " + response.wind.speed);
