@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar fixed-top navbar-light bg-light">
-                        <h1>Welcome to Your Dashboard</h1>
+                        <h1>Welcome <span id="user-name"></span></h1>
                     </nav>
                 </div>
             </div>
@@ -21,7 +21,7 @@
             <div class ="row">
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="nyt-div">
                             <div class="nyt-api">
                                 <h2>Top Articles at the New York Times</h2>
                                 <div id="nyt-articles">
@@ -31,11 +31,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="giphy-div">
                             <div class="giphy-api">
-                                <h2>It's a cute...</h2>
+                                <h2>Daily Cute Dose</h2>
                                 <div id="cute-animals">
-                                    <!--giphy appens here-->
+                                    <!--giphy appends here-->
                                 </div>
                             </div>
                         </div>
@@ -43,17 +43,17 @@
                 </div>
                 <div class="col-md-4">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="weather-div">
                             <div id="weather-api">
                                 <h2>Weather</h2>
                                 <div id="weather-display">
-                                    <!--weather appens here-->
+                                    <!--weather appends here-->
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="map-div">
                             <div class="map-api">
                                 <h2>Your Location</h2>
                                 <div id="map-display" style="height:400px">
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="food-div">
                             <div class="food-api">
                                 <h2>Local Eats</h2>
                                 <div id="restaurants">

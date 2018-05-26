@@ -1,17 +1,26 @@
-body {
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-}
-
 h1 {
     text-align: center;
     font-family: 'Inconsolata', monospace;
     font-size: 2em;
 }
 
+.container {
+    margin-top: 40px;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+}
+
 h2 {
     text-align: center;
     font-size: 1.5em;
+}
+
+#giphy-div, #nyt-div, #weather-div, #map-div, #food-div {
+    margin: auto;
+    margin-top: 30px;
 }
 
 .nyt-section {
@@ -40,14 +49,27 @@ a {
     font-size: 0.7em;
 }
 
-#weather-api {
-    width: 400px;
-    height: 400px;
+#weather-div {
+    width: 350px;
+    height: 200px;
+    background-repeat: no-repeat;
+    border-radius: 6px;
 }
 
-#weather-info {
+#weather-api {
     color: white;
     padding: 15px;
+    background-color: rgb(0, 0, 0, 0.7);
+    margin-top: 40px;
+    padding: 10px 5px;
+    align-content: center;
+    border-radius: 6px;
+} 
+
+img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #footer {
