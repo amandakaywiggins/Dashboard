@@ -1,3 +1,4 @@
+//firedash
 var config = {
     apiKey: "AIzaSyCoskBfAja3rGiTEvs6dQLu1hwhg3uNss8",
     authDomain: "supercooldash-96c39.firebaseapp.com",
@@ -9,38 +10,85 @@ var config = {
 
 firebase.initializeApp(config);
 
+//firedash variables
 var database = firebase.database();
-
 var userName = "";
 var userFavAnimal = "";
 var userBirthday = "";
+var userColor = "";
 
+//clickhandler to store to firebase
 $("#submit").on("click", function(event){
     event.preventDefault();
     userName = $("#name-input").val().trim();
     userFavAnimal = $("#fav-animal-input").val().trim();
     userBirthday = $("#birthday-input").val().trim();
-    
+    userColor =  $("select#color-input").val();
+
     database.ref().push({
         userName: userName,
         userFavAnimal: userFavAnimal,
-        userBirthday: userBirthday
+        userBirthday: userBirthday,
+        userColor: userColor
     });
+
+    //save userName to local storage
     localStorage.clear();
     localStorage.setItem("localName" , userName);
 
+    //load dash on submit
     window.location.href ="dashboard.html";
 });
 
+//retrieve userName from local storage
 console.log(localStorage.getItem("localName"));
 var localUser = localStorage.getItem("localName");
 
+
+//add userName to navbar
 function welcome() {
     $("#user-name").text(localUser);
 };
 
 welcome();
 
+//update background color to user preference
+function backgroundColor() {
+    database.ref().orderByChild("userName").equalTo(localUser).on("child_added", function(childSnapshot) {
+        color = childSnapshot.val().userColor;
+        console.log(color);
+
+        if (color === "Red") {
+            $("#dash-page").css("background-color", "#ff9191");
+            $("#header").css({background: "linear-gradient(to bottom right, #fff463, #ff9191)"});
+        } else if (color === "Orange") {
+            $("#dash-page").css("background-color", "#ffcb91"); 
+            $("#header").css({background: "linear-gradient(to bottom right, #bd91ff, #ffcb91)"});            
+        } else if (color === "Yellow") {
+            $("#dash-page").css("background-color", "#ffffdb");
+            $("#header").css({background: "linear-gradient(to bottom right, #ff9191, #ffffdb)"});            
+        } else if (color === "Green") {
+            $("#dash-page").css("background-color", "#91ffa8");
+            $("#header").css({background: "linear-gradient(to bottom right, #bd91ff, #91ffa8)"});            
+        } else if (color === "Blue") {
+            $("#dash-page").css("background-color", "#91beff");        
+            $("#header").css({background: "linear-gradient(to bottom right, #ff9191, #91beff)"});            
+        } else if (color === "Purple") {
+            $("#dash-page").css("background-color", "#bd91ff");        
+            $("#header").css({background: "linear-gradient(to bottom right, #91beff, #bd91ff)"});            
+        } else if (color === "Gray") {
+            $("#dash-page").css("background-color", "#aaaaaa");        
+            $("#header").css({background: "linear-gradient(to bottom right, #91beff, #aaaaaa)"});            
+        } else if (color === "White") {
+            $("#dash-page").css("background-color", "#ffffff");        
+            $("#header").css({background: "linear-gradient(to bottom right, #ff9191, #ffffff)"});            
+        };
+    });
+};
+
+backgroundColor();
+
+//nyt API
 function buildStories() {
     var url = "https://api.nytimes.com/svc/topstories/v2/home.json";
     
@@ -73,6 +121,7 @@ function buildStories() {
     
 buildStories();
 
+//googlemaps and zomato APIs
 var map, infoWindow;
 var pos;  
 function initMap() {
@@ -127,7 +176,7 @@ function initMap() {
     };
 };
 
-
+//googlemaps no location error
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -137,7 +186,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 };
 
 //weatherAPI
-
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
         var lat = position.coords.latitude;
@@ -227,8 +275,9 @@ function displayCuteAnimals() {
         console.log(childSnapshot.val());
         animal = childSnapshot.val().userFavAnimal;
         console.log(animal);
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=1";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "+cute&api_key=dc6zaTOxFJmzC&limit=1";
         console.log(queryURL);
+        
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -256,6 +305,7 @@ function displayCuteAnimals() {
 
 displayCuteAnimals();
 
+//animate and stop gifs
 $(document).on("click" , "img.animateThatBitch" , function() {
     console.log(this)
     var state = $(this).attr("data-state");
