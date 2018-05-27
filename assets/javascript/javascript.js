@@ -23,7 +23,7 @@ $("#submit").on("click", function(event){
     userName = $("#name-input").val().trim();
     userFavAnimal = $("#fav-animal-input").val().trim();
     userBirthday = $("#birthday-input").val().trim();
-    userColor =  $("select#color-input").val();
+    userColor =  $("#color-input").val();
 
     database.ref().push({
         userName: userName,
