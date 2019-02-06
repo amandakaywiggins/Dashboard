@@ -1,4 +1,4 @@
-# ProjectOne
+# Dashboard
 
 Why do we need a dashboard?
 With so much information out today, and so many ways to access it, it can be easy to feel bombarded and overwhelmed. A dashboard allows you to receive only the information you need without the ads, pop-ups, and unnecessary information. We’ve created a place where you can see your weather, news, local restaurants, and even a daily cute gif of the day all in one spot that has been personalized by you!
