@@ -1,5 +1,6 @@
 # Dashboard
 [View the website here](https://amandakaywiggins.github.io/Dashboard/)
+
 *It appears some changes have to the NY Times API have broken that particular code*
 
 ## Why do we need a dashboard?
