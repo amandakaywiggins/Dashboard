@@ -65,3 +65,9 @@ function backgroundColor() {
     })
 )};
 ````
+## Authors
+Lea Hughes, Andrea Carver, and Amanda Kay Wiggins
+
+## Acknowledgements
+Created as part of the UT Bootcamp 
+
