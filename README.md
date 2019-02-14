@@ -1,4 +1,5 @@
 # Dashboard
+[View the website here](https://amandakaywiggins.github.io/Dashboard/)
 
 ## Why do we need a dashboard?
 With so much information out today, and so many ways to access it, it can be easy to feel bombarded and overwhelmed. A dashboard allows you to receive only the information you need without the ads, pop-ups, and unnecessary information. We’ve created a place where you can see your weather, news, local restaurants, and even a daily cute gif of the day all in one spot that has been personalized by you!
@@ -25,7 +26,8 @@ Live updates
 ### Key Code
 As the UI and front-end developer for this project, I wanted to create a fun, personalized experience for users that would still be clean and functional. 
 
-I created a few customizable options, such as choosing a color scheme for your dashboard.
+I created a few customizable options, such as choosing a color scheme for your dashboard. I also used the weather forecast to change the background on the weather div to mirror the current conditions using similar code. In future projects, I hope to be able to provide further customization like font, font-size, and arrangment of divs on the dashboard.
+
 
 `function backgroundColor() {
     database.ref().orderByChild("userName").equalTo(localUser).on("child_added", function(childSnapshot) {
@@ -59,6 +61,4 @@ I created a few customizable options, such as choosing a color scheme for your d
         };
     });
 };`
-
-I also used the weather forecast to change the background on the weather div to mirror the current conditions using similar code.
 
