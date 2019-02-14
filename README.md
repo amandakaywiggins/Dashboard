@@ -61,6 +61,5 @@ I created a few customizable options, such as choosing a color scheme for your d
             $("#dash-page").css("background-color", "#ffffff");        
             $("#header").css({background: "linear-gradient(to bottom right, #ff9191, #ffffff)"});            
         };
-    });
-};`
+    })`
 
