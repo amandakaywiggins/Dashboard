@@ -31,7 +31,8 @@ As the UI and front-end developer for this project, I wanted to create a fun, pe
 I created a few customizable options, such as choosing a color scheme for your dashboard. I also used the weather forecast to change the background on the weather div to mirror the current conditions using similar code. In future projects, I hope to be able to provide further customization like font, font-size, and arrangment of divs on the dashboard.
 
 
-`function backgroundColor() {
+````
+function backgroundColor() {
     database.ref().orderByChild("userName").equalTo(localUser).on("child_added", function(childSnapshot) {
         color = childSnapshot.val().userColor;
         console.log(color);
@@ -61,5 +62,6 @@ I created a few customizable options, such as choosing a color scheme for your d
             $("#dash-page").css("background-color", "#ffffff");        
             $("#header").css({background: "linear-gradient(to bottom right, #ff9191, #ffffff)"});            
         };
-    })`
-
+    })
+)};
+````
