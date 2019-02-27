@@ -93,7 +93,8 @@ function buildStories() {
     var url = "https://api.nytimes.com/svc/topstories/v2/home.json";
     
     url += '?' + $.param({
-        'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
+        'api-key': "DtI27W24qTG7UsJJ5e9kH5RJwgXLXeEn"
+        //'api-key': "b9f91d369ff59547cd47b931d8cbc56b:0:74623931"
     });
     
     //ajax call
